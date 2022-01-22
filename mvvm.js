@@ -6,6 +6,10 @@ class MVVM{
     }
     init(){
         this.initData();
+        this.initDom()
+    }
+    initDom(){
+        this.bindInput(this.el);
     }
     initData(){
         const _this = this;
@@ -21,6 +25,13 @@ class MVVM{
             })
         }
         console.log(this.data)
+    }
+    bindInput(el){
+        const _allInputs = el.querySelectorAll('input');
+        _allInputs.forEach(input => {
+            const _vModel = input.getAttribute('v-model');
+            console.log(_vModel)
+        });
     }
 }
 
