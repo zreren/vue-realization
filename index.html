@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <div>
+        <input type="text" v-model="name" placeholder="name" />
+        <input type="text" v-model="age" placeholder="age" />
+        <input type="text" v-model="email" placeholder="email" />
+        <input type="text" v-model="tel" placeholder="tel" />
+    </div>
+    <div>
+        <p>name:<span>{{name}}</span></p>
+        <p>age:<span>{age}</span></p>
+        <p>email:<span>{email}</span></p>
+        <p><p>tel:<span>{tel}</span></p></p>
+    </div>
+</div>
+<script src="mvvm.js"></script>
+<script>
+    const app = new MVVM(
+        '#app',
+        {
+            name:'',
+            age:'',
+            email:'',
+            tel:'',
+        }
+    )
+</script>
+</body>
+</html>
