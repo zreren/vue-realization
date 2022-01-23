@@ -2,7 +2,7 @@ class MVVM{
     constructor(el,data){
         this.el = document.querySelector(el);
         this._data = data;
-        this.dompool = [];
+        this.domPool = {};
         this.init();
     }
     init(){
@@ -12,6 +12,7 @@ class MVVM{
     initDom(){
         this.bindDom(this.el);
         this.bindInput(this.el);
+       console.log(this.domPool);
     }
     initData(){
         const _this = this;
@@ -22,7 +23,7 @@ class MVVM{
                     return _this._data[key];
                 },
                 set(newValue){
-                    console.log(key,'change data',newValue)
+                    _this.domPool[key].innerText = newValue
                     _this._data[key] = newValue;
                 }
             })
@@ -37,7 +38,10 @@ class MVVM{
                 if(_value.trim().length){
                     let _isValid = /\{\{(.+?)\}\}/.test(_value);
                     if(_isValid){
-                        console.log(item.nodeValue);
+                        const _key = _value.match(/\{\{(.+?)\}\}/)[1].trim();
+                        console.log(_key);
+                        this.domPool[_key] = item.parentNode;
+                        item.parentNode.innerText = this.data[_key] || undefined;
                     }
                 }
             }
