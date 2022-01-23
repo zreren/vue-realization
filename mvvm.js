@@ -2,6 +2,7 @@ class MVVM{
     constructor(el,data){
         this.el = document.querySelector(el);
         this._data = data;
+        this.dompool = [];
         this.init();
     }
     init(){
@@ -9,6 +10,7 @@ class MVVM{
         this.initDom()
     }
     initDom(){
+        this.bindDom(this.el);
         this.bindInput(this.el);
     }
     initData(){
@@ -20,18 +22,42 @@ class MVVM{
                     return _this._data[key];
                 },
                 set(newValue){
+                    console.log(key,'change data',newValue)
                     _this._data[key] = newValue;
                 }
             })
         }
         console.log(this.data)
     }
+    bindDom(el){
+        const childNodes = el.childNodes;
+        childNodes.forEach(item =>{
+            if(item.nodeType ===3){
+                const _value = item.nodeValue;
+                if(_value.trim().length){
+                    let _isValid = /\{\{(.+?)\}\}/.test(_value);
+                    if(_isValid){
+                        console.log(item.nodeValue);
+                    }
+                }
+            }
+            item.childNodes && this.bindDom(item);
+        })
+    }
     bindInput(el){
         const _allInputs = el.querySelectorAll('input');
         _allInputs.forEach(input => {
             const _vModel = input.getAttribute('v-model');
-            console.log(_vModel)
+            if(_vModel){
+                input.addEventListener('keyup',this.handleInput.bind(this,_vModel,input),false)
+            }
         });
+    }
+    handleInput(key,input){
+        console.log(input)
+        const _value = input.value;
+        this.data[key] = _value;
+        console.log(this.data);
     }
 }
 
