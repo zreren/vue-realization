@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box-wrapper{
+            width: 800px;
+            height: 200px;
+        }
+        .box{
+            float: left;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            color: white;
+            font-size: 50px;
+        }
+        .box1{
+            background-color:chartreuse;
+        }
+        .box2{
+            background-color: aliceblue;
+        }
+        .box3{
+            background-color: aqua;
+        }
+        .box4{
+            background-color: bisque;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box-wrapper">
+            <div v-if="boxshow1" class="box box1">1</div>
+            <div v-show="boxshow2" class="box box2">2</div>
+            <div v-if="boxshow3" class="box box3">3</div>
+            <div v-show="boxshow4" class="box box4">4</div>
+        </div>
+        <button @click="showbox1">box1</button>
+        <button @click="showbox2">box2</button>
+        <button @click="showbox3">box3</button>
+        <button @click="showbox4">box4</button>
+    </div>
+</body>
+<script src="conditionrender.js"></script>
+<script>
+    new Cr({
+        el:'#app',
+        data:{
+            boxshow1:false,
+            boxshow2:false,
+            boxshow3:false,
+            boxshow4:false,
+        },
+        methods:{
+            showbox1(){
+
+            },
+            showbox2(){
+                
+            },
+            showbox3(){
+                
+            },
+            showbox4(){
+                
+            }
+        }
+    })
+</script>
+</html>
